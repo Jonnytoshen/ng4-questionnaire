@@ -1,0 +1,18 @@
+.app-wrapper {
+    margin-top: 54px;
+}
+
+.app-wrapper .list-group-item {
+    cursor: pointer;
+}
+
+.app-wrapper .list-group-item.active {
+    background-color: #0275d8;
+    color: #fff;
+}
+
+.app-wrapper .lable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

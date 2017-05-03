@@ -1,4 +1,30 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+
+<app-header></app-header>
+<div class="container app-wrapper" *ngIf="!submited">
+  <p class="pt-4">当前第{{currentKey + 1}}/{{total}}题</p>
+  <h6>{{currentKey + 1}}. {{current.question}}</h6>
+  <ul class="list-group mb-2">
+    <li class="list-group-item" *ngFor="let item of current.answer" [ngClass]="{'active': item.selected}" (click)="onClick(current, item)">
+        <div class="col-2 lable">{{item.key}}</div>
+        <div class="col-10">{{item.value}}</div>
+    </li>
+  </ul>
+  <div>
+    <button class="btn btn-primary" [disabled]="previous" [ngClass]="{'btn-secondary': previous, 'active': previous}" (click)="onPrevious()">上一题</button>
+    <button class="btn btn-primary" [disabled]="next" [ngClass]="{'btn-secondary': next, 'active': next}" (click)="onNext()">下一题</button>
+    <button class="btn btn-primary" *ngIf="submit" (click)="onSubmit()">提交</button>
+  </div>
+</div>
+<div class="container app-wrapper" *ngIf="submited">
+  <p class="pt-4"></p>
+  <h5 class="text-center pb-2">答案统计情况</h5>
+  <p class="text-center">选择 <strong>A</strong> 答案的有 <strong>{{count.A}}</strong> 道题.</p>
+  <p class="text-center">选择 <strong>B</strong> 答案的有 <strong>{{count.B}}</strong> 道题.</p>
+  <p class="text-center">选择 <strong>C</strong> 答案的有 <strong>{{count.C}}</strong> 道题.</p>
+  <p class="text-center">选择 <strong>D</strong> 答案的有 <strong>{{count.D}}</strong> 道题.</p>
+  <p class="text-center">
+    <button class="btn btn-primary" (click)="onRest()">重新测试</button>
+  </p>
+</div>
+
+
